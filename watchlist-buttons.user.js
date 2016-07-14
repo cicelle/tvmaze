@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Buttons Watchlist
 // @namespace    TVMaze
-// @version      1
+// @version      0.1
 // @description  Adding buttons for status
-// @author       cecile
+// @author       cicelle
 // @include      http://www.tvmaze.com/watchlist*
+// @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/watchlist-buttons.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
 (function() {
