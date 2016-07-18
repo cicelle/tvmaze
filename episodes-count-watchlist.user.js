@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      0.1
-// @description  Replace the counter of viewed episodes
+// @version      0.2
+// @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @include      http://www.tvmaze.com/watchlist*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/episodes-count-watchlist.user.js
@@ -21,14 +21,17 @@
     var width = $('#filter + div').width() ;
     var top = $('#filter').height() + parseInt($('#filter').css('margin-bottom')) + parseInt($('#filter').css('margin-top'));
     var left = parseInt($('#filter').parent().css('padding-left'));
-    var i = 0;
+    var l = $('.watched-eps').length;
+    var p = 18;
     t = [];
     tf = [];
-    $('.watched-eps').each(function(){
-        var c = $(this).html().split(' / ');
+    function counter(selector){
+        var c = $(selector).html().split(' / ');
         var unseen = parseInt(c[1]) - parseInt(c[0]);
-        $(this).html(unseen + ' remaining');
-        $(this).attr('data-unseen', unseen);
+        $(selector).attr('data-unseen', unseen);
+    }
+    $('.watched-eps').each(function(){
+        counter(this);
     });
     if( sort == 'Completed the most' || sort == 'Completed the least' ){
         $('#filter').nextAll().each(function(){
@@ -45,9 +48,8 @@
         });
         if(sort == 'Completed the least' )
             tf.reverse();
-        $('#filter').parent().css({'height': $('#filter').parent().height(), 'position':'relative'});
         tf.forEach(function(e){
-            var h = $('[data-show_id='+e+']').parent().height() + parseInt($('[data-show_id='+e+']').css('margin-bottom'));
+            var h = $('[data-show_id='+e+']').outerHeight(true) + $('[data-show_id='+e+']').prev().outerHeight(true) + p;
             $('[data-show_id='+e+']').parent().css({
                 'position':'absolute',
                 'width' : '100%',
@@ -56,7 +58,7 @@
                 'top': (top)+'px'
             });
             top += h;
-            i++;
         });
+        $('#filter').parent().css({'height': top+'px', 'position':'relative'});
     }
 })();
