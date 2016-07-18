@@ -25,7 +25,6 @@
             '<span data-type="0" class="buttons"><i class="fa fa-eye"></i></span></p>');
     });
     if($('.today').length > 0){
-        console.log($('.today').offset().top);
         window.scrollTo(0, $('.today').offset().top);
     }
     $('body').on('click', '.buttons', function(){
