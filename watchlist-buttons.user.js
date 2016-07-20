@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Buttons Watchlist
 // @namespace    TVMaze
-// @version      0.2
+// @version      0.2.1
 // @description  Adding buttons for status on watchlist and shows episodes page
 // @author       cicelle
 // @include      http://www.tvmaze.com/watchlist*
@@ -11,6 +11,7 @@
 // ==/UserScript==
 (function() {
     var path = window.location.pathname.split('/')[1];
+    var l = $('.watchlist-show').length;
     $('head').append('<style>'+
                      '.buttons{padding:5px 10px; cursor:pointer;display:block;text-align:center;}'+
                      'th:nth-child(4),th:nth-child(5),th:nth-child(6),th:nth-child(7){text-align:center;}'+
@@ -26,10 +27,9 @@
             $(this).parents('tr').find('.checked').removeClass('checked');
             $(this).parent().addClass('checked');
         }
-        else if(path == 'watchlist'){
-            var id = $(this).parents('[data-show_id]').attr('data-show_id');
-            var thistable = $('[data-show_id='+id+']').parents('table');
-            setTimeout(function(){addcolumns('[data-show_id='+id+'] table');} , 350);
+        else if(type == 1 && path == 'watchlist'){
+            $(this).parents('tr').find('td + td + td + td').removeClass('checked');
+            $(this).parents('tr').find('td:nth-child(6)').addClass('checked');
         }
     });
     function addcolumns(selector){
@@ -63,6 +63,15 @@
         $('[data-show_id]').each(function(){
             var i = $(this).attr('data-show_id');
             addcolumns('[data-show_id='+i+'] table');
+        });
+    }
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    var observer = new MutationObserver(function(mutations) {
+        addcolumns($(mutations[0].target));
+    });
+    for(var j = 0; j < l; j++){
+        observer.observe($('.watchlist-show')[j], {
+            childList: true
         });
     }
 })();
