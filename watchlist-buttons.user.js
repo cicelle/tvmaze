@@ -28,7 +28,7 @@
             $(this).parent().addClass('checked');
         }
         else if(type == 1 && path == 'watchlist'){
-            $(this).parents('tr').find('td + td + td + td').removeClass('checked');
+            $(this).parents('tr').find('td + td + td +td').removeClass('checked');
             $(this).parents('tr').find('td:nth-child(6)').addClass('checked');
         }
     });
