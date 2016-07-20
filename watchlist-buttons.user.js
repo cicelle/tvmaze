@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Buttons Watchlist
 // @namespace    TVMaze
-// @version      0.2
+// @version      0.3
 // @description  Adding buttons for status on watchlist and shows episodes page
 // @author       cicelle
 // @include      http://www.tvmaze.com/watchlist*
@@ -26,43 +26,17 @@
             $(this).parents('tr').find('.checked').removeClass('checked');
             $(this).parent().addClass('checked');
         }
-        else if(path == 'watchlist'){
-            var id = $(this).parents('[data-show_id]').attr('data-show_id');
-            var thistable = $('[data-show_id='+id+']').parents('table');
-            setTimeout(function(){addcolumns('[data-show_id='+id+'] table');} , 350);
-        }
     });
-    function addcolumns(selector){
-        $(selector).each(function(){
-            $(this).find('tbody tr').each(function(){
-                $(this).append('<td><span data-type="2" class="buttons"><i class="fa fa-ban"></i></span></td>'+
+    function addcolumns(){
+            $('tbody tr').append('<td><span data-type="2" class="buttons"><i class="fa fa-ban"></i></span></td>'+
                                '<td><span data-type="" class="buttons"><i class="fa fa-eye-slash"></i></span></td>'+
                                '<td><span data-type="1" class="buttons"><i class="fa fa-cloud"></i></span></td>'+
                                '<td><span data-type="0" class="buttons"><i class="fa fa-eye"></i></span></td>');
+            $('thead tr').append('<th>S</th><th>U</th><th>A</th><th>W</th>');
+            $('tbody').each(function(){
+                var val = $(this).find("select").val();
+                $(this).find('span[data-type="' + val  + '"]').parent().addClass("checked");
             });
-            $(this).find('thead tr').each(function(){
-                $(this).append('<th>S</th><th>U</th><th>A</th><th>W</th>');
-            });
-            $(this).find('tbody select').each(function(){
-                var val = $(this).val();
-                if(val == 1){
-                    $(this).parent().next().next().next().addClass('checked');
-                }else if(val == ''){
-                    $(this).parent().next().next().addClass('checked');
-                }else if(val == 2){
-                    $(this).parent().next().addClass('checked');
-                }else if(val == 0){
-                    $(this).parent().next().next().next().next().addClass('checked');
-                }
-            });
-        });
     }
-    if(path == 'shows'){
-        addcolumns('table');
-    }else if(path == 'watchlist'){
-        $('[data-show_id]').each(function(){
-            var i = $(this).attr('data-show_id');
-            addcolumns('[data-show_id='+i+'] table');
-        });
-    }
+    addcolumns();
 })();
