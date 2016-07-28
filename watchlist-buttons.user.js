@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Buttons Watchlist
 // @namespace    TVMaze
-// @version      0.2.1
+// @version      0.2.2
 // @description  Adding buttons for status on watchlist and shows episodes page
 // @author       cicelle
 // @include      http://www.tvmaze.com/watchlist*
@@ -14,8 +14,9 @@
     var l = $('.watchlist-show').length;
     $('head').append('<style>'+
                      '.buttons{padding:5px 10px; cursor:pointer;display:block;text-align:center;}'+
-                     'th:nth-child(4),th:nth-child(5),th:nth-child(6),th:nth-child(7){text-align:center;}'+
-                     'td:nth-child(4),td:nth-child(5),td:nth-child(6),td:nth-child(7){padding: 0;}'+
+                     'th:nth-child(2){min-width:110px !important;}'+
+                     'th:nth-last-child(-n+4){text-align:center;}'+
+                     'td:nth-last-child(-n+4){padding: 0;}'+
                      '.checked{background:#ccc;}'+
                      '</style>');
     $('body').on('click', '.buttons', function(){
