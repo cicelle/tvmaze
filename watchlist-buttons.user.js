@@ -5,7 +5,7 @@
 // @description  Adding buttons for status on watchlist and shows episodes page
 // @author       cicelle
 // @include      http://www.tvmaze.com/watchlist*
-// @include      http://www.tvmaze.com/shows/*/episodes
+// @include      http://www.tvmaze.com/shows/*/episodes*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/watchlist-buttons.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
