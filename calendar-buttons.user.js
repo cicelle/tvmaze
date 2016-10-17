@@ -1,16 +1,18 @@
 // ==UserScript==
 // @name         Buttons calendar
 // @namespace    TVMaze
-// @version      0.1.1
+// @version      0.2
 // @author       cicelle
 // @include      http://www.tvmaze.com/calendar*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/calendar-buttons.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
 (function() {
-    $('head').append('<style>li p{margin-bottom: 0; margin-top: 5px; display: flex; justify-content: space-between;}'+
-                     'li p span{cursor:pointer; padding: 2px;}'+
+    $('head').append('<style>'+
+                     'li p{margin-bottom: 0; margin-top: 1px; display: flex; justify-content: space-between;}'+
+                     'li p span{cursor:pointer;}'+
                      'li.watched p span[data-type="0"],li.acquired p span[data-type="1"]{background-color: #000; color: #fff; cursor: default;}'+
+                     'li.acquired  p, li.watched  p{display:none;}'+
                      '@media screen and (max-width: 600px) {'+
                      'li{position: relative;}'+
                      'li p {float: right; margin-top: 0px;}'+
@@ -20,7 +22,6 @@
                      '</style>');
     $('.episodes li').each(function(){
         $(this).append('<p><span data-type="2" class="buttons"><i class="fa fa-ban"></i></span>'+
-            '<span data-type="" class="buttons"><i class="fa fa-eye-slash"></i></span>'+
             '<span data-type="1" class="buttons"><i class="fa fa-cloud"></i></span>'+
             '<span data-type="0" class="buttons"><i class="fa fa-eye"></i></span></p>');
     });
