@@ -17,6 +17,7 @@
                      'th:nth-child(2){min-width:110px !important;}'+
                      'th:nth-last-child(-n+4){text-align:center;}'+
                      'td:nth-last-child(-n+4){padding: 0;}'+
+                     'table tr td,.watch-list tr td:nth-child(3){padding:1px 5px;}'+
                      '.checked{background:#ccc;}'+
                      '</style>');
     $('body').on('click', '.buttons', function(){
