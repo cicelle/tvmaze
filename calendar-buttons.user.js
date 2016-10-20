@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Buttons calendar
 // @namespace    TVMaze
-// @version      0.2
+// @version      0.2.1
 // @author       cicelle
-// @include      http://www.tvmaze.com/calendar*
+// @match        http://www.tvmaze.com/calendar*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/calendar-buttons.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
