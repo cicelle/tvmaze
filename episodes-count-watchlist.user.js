@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      0.3.1
+// @version      1.1
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
@@ -10,28 +10,27 @@
 // ==/UserScript==
 (function() {
     $('head').append('<style>'+
-                     '.watchlist-show{position:relative;margin-bottom:40px}'+
-                     '.watchlist-show .watched-eps{position:absolute;top:-30px;right:275px;padding-right:0;font-size:.9em;text-align:right}'+
-                     '.watchlist-show .progress{position:absolute;top:-31px;right:65px;width:200px;height:20px}'+
-                     '.watch-list+a{position:absolute;top:-30px;right:0;padding-top:3px;font-size:.9em}'+
-                     '.watchlist-show+hr{display:none}'+
-                     'h2{color:#ccc;}'+
-                     'h2 a{font-weight:400;}'+
-                     'h2 a:last-child{font-size:0.5em}'+
-                     '@media(max-width:40em){'+
-                     'h2{margin-bottom:30px;}'+
-                     '.watchlist-show .watched-eps{top:-25px;right:auto;left:0;width:60px;text-align:center;}'+
-                     '.watchlist-show .progress{top:-27px;width:auto;left:65px;}'+
-                     '.watch-list+a{top:-25px;}'+
-                     'h2 a:last-child{font-size:0.6em}'+
+                     '#site-navigation+.row+.row>div{display:flex;flex-direction:column}'+
+                     '#site-navigation+.row+.row>div>br,.watchlist-show+hr{display:none}'+
+                     '#site-navigation+.row+.row>div>br+div{order:0}'+
+                     '#site-navigation+.row+.row>div>div+div{order:1;margin-bottom:20px}'+
+                     '.watchlist-show{position:relative}'+
+                     '.watchlist-show .watched-eps{width:100px;font-size:14px;line-height:14px;margin-bottom:10px}'+
+                     '.watchlist-show .progress{position:absolute;top:2px;left:100px;right:100px;width:auto;height:15px;margin-bottom:0}'+
+                     '.watch-list+a{position:absolute;top:0;right:0;font-size:.9em}'+
+                     'h2{color:#ccc}'+
+                     'h2 a{font-weight:400}'+
+                     'h2 a:last-child{font-size:.5em}'+
+                     '@media max-width:40em){'+
+                     'h2{margin-bottom:30px}'+
+                     '.watchlist-show .watched-eps{top:-25px;right:auto;left:0;width:60px;text-align:center}'+
+                     '.watchlist-show .progress{top:-27px;width:auto;left:65px}'+
+                     '.watch-list+a{top:-25px}'+
+                     'h2 a:last-child{font-size:.6em}'+
                      '}'+
                      '</style>');
     var sort = $('[name=sort] :selected').html();
-    var width = $('#filter + div').width() ;
-    var top = $('#filter').height() + parseInt($('#filter').css('margin-bottom')) + parseInt($('#filter').css('margin-top'));
-    var left = parseInt($('#filter').parent().css('padding-left'));
-    var l = $('.watched-eps').length;
-    var p = 18, tunseen = [], tdate = [], tf = [], t;
+    var tunseen = [], tdate = [], tf = [], t;
     function counter(selector){
         var c = $(selector).html().split(' / ');
         var unseen = parseInt(c[1]) - parseInt(c[0]);
@@ -50,18 +49,12 @@
         $(selector).attr('data-date', y[1]+m+d);
     }
     function position(){
+        var num = 1;
         tf.forEach(function(e){
-            var h = $('[data-show_id='+e+']').outerHeight(true) + $('[data-show_id='+e+']').prev().outerHeight(true) + p;
             $('[data-show_id='+e+']').parent().css({
-                'position':'absolute',
-                'width' : '100%',
-                'left': '0px',
-                'padding': '0 '+left+'px',
-                'top': (top)+'px'
+                'order': num++
             });
-            top += h;
         });
-        $('#filter').parent().css({'height': top+'px', 'position':'relative'});
     }
     $('#filter').nextAll().each(function(){
         $(this).find('h2').append(' | <a href="'+$(this).find('h2 a').attr('href')+'/episodes?all=1">Episodes list</a>');
