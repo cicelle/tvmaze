@@ -15,9 +15,10 @@
                      '#site-navigation+.row+.row>div>br+div{order:0}'+
                      '#site-navigation+.row+.row>div>div+div{order:1;margin-bottom:20px}'+
                      '.watchlist-show{position:relative}'+
-                     '.watchlist-show .watched-eps{width:100px;font-size:14px;line-height:14px;margin-bottom:10px}'+
-                     '.watchlist-show .progress{position:absolute;top:2px;left:100px;right:100px;width:auto;height:15px;margin-bottom:0}'+
-                     '.watch-list+a{position:absolute;top:0;right:0;font-size:.9em}'+
+                     '.watchlist-show .watched-eps{width:100px;font-size:14px;line-height:14px;margin-bottom:10px;padding-right:0;text-align:left}'+
+                     '.watchlist-show .watched-eps span{float:right}'+
+                     '.watchlist-show .progress{position:absolute;top:4px;left:100px;right:60px;width:auto;height:15px;margin-bottom:0}'+
+                     '.watch-list+a{position:absolute;top:2px;right:0;font-size:.9em}'+
                      'h2{color:#ccc}'+
                      'h2 a{font-weight:400}'+
                      'h2 a:last-child{font-size:.5em}'+
@@ -34,7 +35,7 @@
     function counter(selector){
         var c = $(selector).html().split(' / ');
         var unseen = parseInt(c[1]) - parseInt(c[0]);
-        $(selector).attr('data-unseen', unseen);
+        $(selector).attr('data-unseen', unseen).append('<span>['+unseen+']</span>');
     }
     function datadate(selector){
         var y = $(selector).find('tbody tr:first-child td:nth-child(2)').text().split(', ');
