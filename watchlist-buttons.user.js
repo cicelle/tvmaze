@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Buttons Watchlist
 // @namespace    TVMaze
-// @version      0.2.4
+// @version      1
 // @description  Adding buttons for status on watchlist and shows episodes page
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
@@ -12,6 +12,7 @@
 (function() {
     var path = window.location.pathname.split('/')[1];
     var l = $('.watchlist-show').length;
+    var unseen = false;
     $('head').append('<style>'+
                      '.buttons{padding:5px 10px; cursor:pointer;display:block;text-align:center;}'+
                      'th:nth-child(2){min-width:110px !important;}'+
@@ -70,10 +71,18 @@
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var observer = new MutationObserver(function(mutations) {
         addcolumns($(mutations[0].target));
+        console.log(mutations);
+        var selector = $(mutations[0].target).find('.watched-eps');
+        var c = $(selector).html().split(' / ');
+        var unseen = parseInt(c[1]) - parseInt(c[0]);
+        $(selector).attr('data-unseen', unseen).append('<span>['+unseen+']</span>');
     });
     for(var j = 0; j < l; j++){
         observer.observe($('.watchlist-show')[j], {
             childList: true
         });
     }
+    setTimeout(function(){
+        unseen = ($('[data-unseen]').length != 0);
+    }, 500);
 })();
