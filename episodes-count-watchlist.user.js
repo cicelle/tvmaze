@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      1.1
+// @version      1.2
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
@@ -35,7 +35,9 @@
     function counter(selector){
         var c = $(selector).html().split(' / ');
         var unseen = parseInt(c[1]) - parseInt(c[0]);
+        var percent = ((parseInt(c[0]) / parseInt(c[1]) )*100) + '%';
         $(selector).attr('data-unseen', unseen).append('<span>['+unseen+']</span>');
+        $(selector).next().find('.meter').css('width', percent);
     }
     function datadate(selector){
         var y = $(selector).find('tbody tr:first-child td:nth-child(2)').text().split(', ');
