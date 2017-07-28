@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      1.2
+// @version      1.3
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
+// @match        https://www.tvmaze.com/watchlist*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/episodes-count-watchlist.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
