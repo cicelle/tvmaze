@@ -4,7 +4,7 @@
 // @version      0.2.2
 // @author       cicelle
 // @match        http://www.tvmaze.com/calendar*
-// @match        http://www.tvmaze.com/calendar*
+// @match        https://www.tvmaze.com/calendar*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/calendar-buttons.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
