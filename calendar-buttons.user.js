@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Buttons calendar
 // @namespace    TVMaze
-// @version      0.2.2
+// @version      0.2.3
 // @author       cicelle
 // @match        http://www.tvmaze.com/calendar*
 // @match        https://www.tvmaze.com/calendar*
