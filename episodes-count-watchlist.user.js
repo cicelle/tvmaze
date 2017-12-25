@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      1.3
+// @version      1.4
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
@@ -15,11 +15,11 @@
                      '#site-navigation+.row+.row>div>br,.watchlist-show+hr{display:none}'+
                      '#site-navigation+.row+.row>div>br+div{order:0}'+
                      '#site-navigation+.row+.row>div>div+div{order:1;margin-bottom:20px}'+
-                     '.watchlist-show{position:relative}'+
-                     '.watchlist-show .watched-eps{width:100px;font-size:14px;line-height:14px;margin-bottom:10px;padding-right:0;text-align:left}'+
+                     '.watchlist-show{position:relative;margin-bottom:30px}'+
+                     '.watchlist-show .watched-eps{width:95px;font-size:14px;line-height:14px;margin-bottom:10px;padding-right:0;text-align:left}'+
                      '.watchlist-show .watched-eps span{float:right}'+
-                     '.watchlist-show .progress{position:absolute;top:4px;left:100px;right:60px;width:auto;height:15px;margin-bottom:0}'+
-                     '.watch-list+a{position:absolute;top:2px;right:0;font-size:.9em}'+
+                     '.watchlist-show .progress{position:absolute;top:0px;left:100px;right:65px;width:auto;height:10px;margin-bottom:0}'+
+                     '.watch-list+a.button.negative{position:absolute;top:2px;right:0;font-size:.9em;border:none;padding:0;border-radius:0;}'+
                      'h2{color:#ccc}'+
                      'h2 a{font-weight:400}'+
                      'h2 a:last-child{font-size:.5em}'+
