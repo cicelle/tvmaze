@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Buttons calendar
 // @namespace    TVMaze
-// @version      0.2.3
+// @version      1.1
 // @author       cicelle
 // @match        http://www.tvmaze.com/calendar*
 // @match        https://www.tvmaze.com/calendar*
@@ -13,7 +13,7 @@
                      'li p{margin-bottom: 0; margin-top: 1px; display: flex; justify-content: space-between;}'+
                      'li p span{cursor:pointer;}'+
                      'li.watched p span[data-type="0"],li.acquired p span[data-type="1"]{background-color: #000; color: #fff; cursor: default;}'+
-                     'li.acquired  p, li.watched  p{display:none;}'+
+                     'li.acquired  p, li.watched  p, li.skipped  p{display:none;}'+
                      '@media screen and (max-width: 600px) {'+
                      'li{position: relative;}'+
                      'li p {float: right; margin-top: 0px;}'+
@@ -38,11 +38,13 @@
             type: type
         }, function() {
             if(type == '0'){
-                $(li).removeClass('acquired').addClass('watched');
+                $(li).removeClass('acquired').removeClass('skipped').addClass('watched');
             }else if(type == '1'){
-                $(li).removeClass('watched').addClass('acquired');
+                $(li).removeClass('watched').removeClass('skipped').addClass('acquired');
+            }else if(type == '2'){
+                $(li).removeClass('watched').removeClass('acquired').addClass('skipped');
             }else{
-                $(li).removeClass('watched').removeClass('acquired');
+                $(li).removeClass('watched').removeClass('acquired').removeClass('skipped');
             }
         });
     });
