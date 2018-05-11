@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Buttons calendar
 // @namespace    TVMaze
-// @version      1.5
+// @version      1.1
 // @author       cicelle
 // @match        http://www.tvmaze.com/calendar*
 // @match        https://www.tvmaze.com/calendar*
 // @downloadURL  https://raw.githubusercontent.com/cicelle/tvmaze/master/calendar-buttons.user.js
 // @license      The MIT License (MIT)
 // ==/UserScript==
-/*(function() {
+(function() {
     $('head').append('<style>'+
                      'li p{margin-bottom: 0; margin-top: 1px; display: flex; justify-content: space-between;}'+
                      'li p span{cursor:pointer;}'+
@@ -48,5 +48,4 @@
             }
         });
     });
-})();*/
-//Script removed due to site improvement
+})();
