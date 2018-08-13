@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      1.5.1
+// @version      1.5.2
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
@@ -14,7 +14,7 @@
                     '#site-header+div+div>div{display:flex;flex-direction:column}'+
                      '#site-header+div+div>div>br,.watchlist-show+hr{display:none}'+
                      '#site-header+div+div>div>br+div{order:0}'+
-                     '#site-header+div+div>div>div+div{order:1;margin-bottom:20px}'+
+                     '#site-header+div+div>div>div+div{order:1}'+
                      '.watchlist-show{position:relative;margin-bottom:30px}'+
                      '.watchlist-show .watched-eps{max-width:105px;width:105px;font-size:14px;line-height:14px;margin-bottom:10px;padding-right:0;text-align:left}'+
                      '.watchlist-show .watched-eps span{float:right}'+
