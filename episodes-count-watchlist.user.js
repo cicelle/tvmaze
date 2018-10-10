@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      1.5.4
+// @version      1.5.5
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
@@ -88,7 +88,6 @@
             tdate[j] = [];
         tdate[j].push(id);
     });
-    console.log(tunseen, tdate);
     /**********************
     change the display order to match logical unseen order
     **********************/
@@ -105,5 +104,27 @@
         if(sort == 'Completed the least' || sort == 'Aired most recently' )
             tf.reverse();
         position();
+    }
+    /**********************
+    create the observer
+    **********************/
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    var observer = new MutationObserver(function(mutations) {
+        var oSelector = $(mutations[0].target).find('.watched-eps');
+        var oC = $(oSelector).html().split(' / ');
+        var oUnseen = parseInt(oC[1]) - parseInt(oC[0]);
+        var oPercent = ((parseInt(oC[0]) / parseInt(oC[1]) )*100) + '%';
+        $(oSelector).next().find('.meter').css('width', oPercent);
+        if($('[data-unseen]').length != 0){
+            $(oSelector).attr('data-unseen', oUnseen).append('<span>['+oUnseen+']</span>');
+        }
+    });
+    /**********************
+    add the observers
+    **********************/
+    for(var j = 0; j < $('.episode-list').length; j++){
+        observer.observe($('.episode-list')[j], {
+            childList: true
+        });
     }
 })();
