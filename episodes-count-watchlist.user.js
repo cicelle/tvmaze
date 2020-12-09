@@ -114,7 +114,7 @@
         var oC = $(oSelector).html().split(' / ');
         var oUnseen = parseInt(oC[1]) - parseInt(oC[0]);
         var oPercent = ((parseInt(oC[0]) / parseInt(oC[1]) )*100) + '%';
-        $(oSelector).next().find('.meter').css('width', oPercent);
+        $(oSelector).next().find('.progress-meter').css('width', oPercent);
         if($('[data-unseen]').length != 0){
             $(oSelector).attr('data-unseen', oUnseen).append('<span>['+oUnseen+']</span>');
         }
