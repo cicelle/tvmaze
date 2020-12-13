@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Count episodes Watchlist
 // @namespace    TVMaze
-// @version      1.5.5
+// @version      1.5.6
 // @description  Reorganize the complete the most|least order. Also change the display
 // @author       cicelle
 // @match        http://www.tvmaze.com/watchlist*
