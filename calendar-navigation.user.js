@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Calendar navigation
 // @namespace    TVMaze
-// @version      1.0
+// @version      1.1
 // @description  Navigation buttons
 // @author       cicelle
 // @include      http://www.tvmaze.com/calendar*
@@ -12,9 +12,10 @@
 (function() {
     'use strict';
     $('head').append(`<style>
-                     #calendar-footer{background-color: #ebebeb; padding: 0.5rem 0;}
-                     #calendar-footer #month{font-size: 1.3rem;font-family: open sans,sans-serif;font-weight: 300}
-                     </style>`);
+		.calendar{margin-bottom: 0}
+		#calendar-footer{background-color: #ebebeb; padding: 0.5rem 0;}
+		#calendar-footer #month{font-size: 1.3rem;font-family: open sans,sans-serif;font-weight: 300}
+		</style>`);
 
     /****************************
     add another calendar navigation
